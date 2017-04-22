@@ -46,7 +46,7 @@ def get_inventory(posts):
     inventory = set()
     for post in posts:
         # other accounts from the parent transaction of this posting
-        inventory |= set(p.account for p in post.xact.posts()
+        inventory |= set((p.account, p.xact.code) for p in post.xact.posts()
                          if p.account.fullname() != post.account.fullname())
 
     return inventory
@@ -126,7 +126,11 @@ def create_table(items, year):
 
 
 class InventoryItem(object):
-    def __init__(self, account, year):
+    def __init__(self, account_code_tuple, year):
+        # split tupple into variabls
+        account = account_code_tuple[0]
+        code = account_code_tuple[1]
+
         self.item = account.name
         self.account = account.fullname()
         self.year = year
