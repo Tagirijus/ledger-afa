@@ -129,33 +129,50 @@ class InventoryItem(object):
     def __init__(self, account_code_tuple, year):
         # split tupple into variabls
         account = account_code_tuple[0]
-        code = account_code_tuple[1]
+        self.code = account_code_tuple[1]
 
         self.item = account.name
         self.account = account.fullname()
         self.year = year
 
-        first_post = account.posts().next()
-        self.code = first_post.xact.code
+        # get first_post to match code and lowest date
+        first_post = [post for post in account.posts()
+                      if post.xact.code == self.code and
+                      post.date == min(p.date for p in account.posts()
+                      if p.xact.code == self.code) and post.amount > 0]
+
+        # fallback, if something goes wrong
+        first_post, = (first_post if len(first_post) == 1
+                       else [account.posts().next()])
+
+        # get buy_date from first_post
         self.buy_date = first_post.date
+
         # instead of only taking initial value, accumulate all purchases
         self.total_value = sum(p.amount for p in account.posts()
-                               if p.amount > 0 and p.date.year <= year)
+                               if p.amount > 0 and p.date.year <= year
+                               and p.xact.code == self.code
+                               )
 
         self.last_year_value = sum(p.amount for p in account.posts()
-                                   if p.date.year < year
+                                   if (p.date.year < year and
+                                       p.xact.code == self.code)
                                    # consider additional purchases in current year
-                                   or (p.date.year == year and p.amount > 0)
+                                   or (p.date.year == year and p.amount > 0
+                                       and p.xact.code == self.code)
                                    )
 
         self.next_year_value = sum(p.amount for p in account.posts()
-                                   if p.date.year <= year)
+                                   if p.date.year <= year and
+                                   p.xact.code == self.code
+                                   )
 
         self.deprecation_amount = sum(p.amount for p in account.posts()
                                       if p.date.year == year
                                       and p.id != first_post.id
                                       # only consider deprecation
-                                      and p.amount < 0
+                                      and p.amount < 0 and
+                                      p.xact.code == self.code
                                       )
 
 
