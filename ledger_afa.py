@@ -172,7 +172,7 @@ def main():
         help='Jahr der Berechnung'
     )
     args.add_argument(
-        '-l',
+        '-k',
         '--konto',
         default='AfA',
         help='Konto für AfA'
@@ -182,9 +182,9 @@ def main():
 
     try:
         journal = ledger.read_journal(args.file)
-        posts = get_afa_posts(journal, args.account, args.year)
-        inventory = [InventoryItem(i, args.year) for i in get_inventory(posts)]
-        table = create_table(inventory, args.year)
+        posts = get_afa_posts(journal, args.konto, args.jahr)
+        inventory = [InventoryItem(i, args.jahr) for i in get_inventory(posts)]
+        table = create_table(inventory, args.jahr)
         print(tabulate.tabulate(table, tablefmt='plain'))
     except ValueError as e:
         print(e.message)
