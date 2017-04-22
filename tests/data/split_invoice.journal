@@ -1,0 +1,14 @@
+2016-09-01 * (a1) rechnung
+  dinge:eimer  € 17,90
+  dinge:waschlappen  € 24,90
+  konto
+
+2017-12-31 * (a1) rechnung
+  ; ein teil
+  AfA  € 1,79
+  dinge:eimer
+
+2017-12-31 * (a1) rechnung
+  ; ein anderes teil
+  AfA  € 2,49
+  dinge:waschlappen

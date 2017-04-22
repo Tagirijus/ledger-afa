@@ -1,0 +1,17 @@
+2016-09-01 * (a1) rechnung
+  dinge:eimer  € 100,00
+  konto
+
+2016-12-31 * abschreibung
+  AfA  € 10,00
+  dinge:eimer
+
+2017-02-10 * (a2) rechnung
+  ; henkel vergessen
+  dinge:eimer  € 50,00
+  konto
+
+2017-12-31 * abschreibung
+  ; neue Restnutzungsdauer: 10 Jahre
+  AfA  € 14,00
+  dinge:eimer

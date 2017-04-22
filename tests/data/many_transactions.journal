@@ -1,0 +1,88 @@
+alias Checking Account=Debit:Checking Account
+
+alias DeluxeShop=Expenses:Job:Studio:Equipment:DeluxeShop
+
+2016-01-19 * (a25) X-Ray Zoom Lens
+ DeluxeShop:X-Ray Zoom Lens  € 292,00
+ Checking Account
+
+2016-01-19 * (a25) Industry Grade Dirt
+ DeluxeShop:Industry Grade Dirt  € 519,00
+ Checking Account
+
+2016-01-19 * (a25) Ruby Broompole
+ DeluxeShop:Ruby Broompole  € 44,00
+ Checking Account
+
+2016-01-19 * (a25) Pistol Whip
+ DeluxeShop:Pistol Whip  € 69,00
+ Checking Account
+
+2016-12-12 * (a55) Table Legs
+ ; Blue This was a mistake. Instand buyer's remorse.
+ DeluxeShop:Table Legs  € 155,00
+ Checking Account
+
+2016-12-12 * (a55) Blue Baby Bottle
+ ; Blue This was a mistake. Instand buyer's remorse.
+ DeluxeShop:Blue Baby Bottle  € 259,00
+ Checking Account
+
+2016-12-12 * (a55) Expensive Stuff Deluxe
+ ; Blue This was a mistake. Instand buyer's remorse.
+ DeluxeShop:Expensive Stuff Deluxe  € 569,00
+ Checking Account
+
+2016-12-31 * (a25) Industry Grade Dirt
+ AfA:Hoarding  € 34,60
+ DeluxeShop:Industry Grade Dirt
+
+2016-12-31 * (a55) Expensive Stuff Deluxe
+ ; Blue This was a mistake. Instand buyer's remorse.
+ AfA:Hoarding  € 9,48
+ DeluxeShop:Expensive Stuff Deluxe
+
+2017-12-31 * (a25) Industry Grade Dirt
+ AfA:Hoarding  € 103,80
+ DeluxeShop:Industry Grade Dirt
+
+2017-12-31 * (a55) Expensive Stuff Deluxe
+ ; Blue This was a mistake. Instand buyer's remorse.
+ AfA:Hoarding  € 113,76
+ DeluxeShop:Expensive Stuff Deluxe
+
+2018-12-31 * (a25) Industry Grade Dirt
+ AfA:Hoarding  € 103,80
+ DeluxeShop:Industry Grade Dirt
+
+2018-12-31 * (a55) Expensive Stuff Deluxe
+ ; Blue This was a mistake. Instand buyer's remorse.
+ AfA:Hoarding  € 113,76
+ DeluxeShop:Expensive Stuff Deluxe
+
+2019-12-31 * (a25) Industry Grade Dirt
+ AfA:Hoarding  € 103,80
+ DeluxeShop:Industry Grade Dirt
+
+2019-12-31 * (a55) Expensive Stuff Deluxe
+ ; Blue This was a mistake. Instand buyer's remorse.
+ AfA:Hoarding  € 113,76
+ DeluxeShop:Expensive Stuff Deluxe
+
+2020-12-31 * (a25) Industry Grade Dirt
+ AfA:Hoarding  € 103,80
+ DeluxeShop:Industry Grade Dirt
+
+2020-12-31 * (a55) Expensive Stuff Deluxe
+ ; Blue This was a mistake. Instand buyer's remorse.
+ AfA:Hoarding  € 113,76
+ DeluxeShop:Expensive Stuff Deluxe
+
+2021-12-31 * (a25) Industry Grade Dirt
+ AfA:Hoarding  € 69,20
+ DeluxeShop:Industry Grade Dirt
+
+2021-12-31 * (a55) Expensive Stuff Deluxe
+ ; Blue This was a mistake. Instand buyer's remorse.
+ AfA:Hoarding  € 104,48
+ DeluxeShop:Expensive Stuff Deluxe
