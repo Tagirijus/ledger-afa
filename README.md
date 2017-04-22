@@ -34,6 +34,6 @@ Das Script ist für folgenden Aufbau des Journals vorgesehen:
 
 ## Nutzung
 
-	python ledger-afa.py -h
+	python ledger_afa.py -h
 
 für eine Liste der Kommandozeilen-Optionen.
