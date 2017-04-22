@@ -2,7 +2,7 @@
 
 """
 A program for calculating and displaying tax deprecation on specified items
-in a ledger journal.
+in a ledger journal. (OLD VERSION)
 
 This script will only work, if there are only TWO accounts in the afa
 transaction at the end of a ARGUMENTS.year: the one which will apply to the
