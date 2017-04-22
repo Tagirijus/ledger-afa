@@ -24,7 +24,7 @@ def get_afa_posts(journal, account, year):
     top = journal.find_account_re(account)
 
     if top is None:
-        return
+        raise ValueError("Konto nicht gefunden: {}".format(account))
 
     accounts = [top] + get_sub_accounts(top)
     return [p for a in accounts for p in a.posts()
@@ -180,17 +180,14 @@ def main():
 
     args = args.parse_args()
 
-    journal = ledger.read_journal(args.file)
-    posts = get_afa_posts(journal, args.account, args.year)
-
-    if posts is None:
-        print("Konto nicht gefunden: {}".format(args.account))
-        return
-
-    inventory = [InventoryItem(i, args.year) for i in get_inventory(posts)]
-    table = create_table(inventory, args.year)
-
-    print(tabulate.tabulate(table, tablefmt='plain'))
+    try:
+        journal = ledger.read_journal(args.file)
+        posts = get_afa_posts(journal, args.account, args.year)
+        inventory = [InventoryItem(i, args.year) for i in get_inventory(posts)]
+        table = create_table(inventory, args.year)
+        print(tabulate.tabulate(table, tablefmt='plain'))
+    except ValueError as e:
+        print(e.message)
 
 if __name__ == '__main__':
     main()

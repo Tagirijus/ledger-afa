@@ -1,4 +1,5 @@
 import ledger_afa
+import pytest
 
 
 def test_get_sub_accounts(journal):
@@ -6,6 +7,12 @@ def test_get_sub_accounts(journal):
     assert top is not None
     accounts = ledger_afa.get_sub_accounts(top)
     assert len(accounts) > 0
+
+
+def test_get_posts_invalid_account(journal):
+    with pytest.raises(ValueError) as e:
+        ledger_afa.get_afa_posts(journal, 'invalid', 2017)
+    assert 'invalid' in e.value.message
 
 
 def test_get_afa_posts(journal):
