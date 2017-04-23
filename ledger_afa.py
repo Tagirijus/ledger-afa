@@ -126,10 +126,8 @@ def create_table(items, year):
 
 
 class InventoryItem(object):
-    def __init__(self, account_code_tuple, year):
-        # split tupple into variabls
-        account = account_code_tuple[0]
-        self.code = account_code_tuple[1]
+    def __init__(self, account, code, year):
+        self.code = code
 
         self.item = account.name
         self.account = account.fullname()
@@ -141,11 +139,12 @@ class InventoryItem(object):
                       post.date == min(p.date for p in account.posts()
                       if p.xact.code == self.code) and post.amount > 0]
 
-        # fallback, if something goes wrong
-        first_post, = (first_post if len(first_post) == 1
-                       else [account.posts().next()])
+        # get the only entry in first_post
+        try:
+            first_post, = first_post
+        except ValueError as e:
+            print(e.message)
 
-        # get buy_date from first_post
         self.buy_date = first_post.date
 
         # instead of only taking initial value, accumulate all purchases
@@ -204,7 +203,7 @@ def main():
     try:
         journal = ledger.read_journal(args.file)
         posts = get_afa_posts(journal, args.konto, args.jahr)
-        inventory = [InventoryItem(i, args.jahr) for i in get_inventory(posts)]
+        inventory = [InventoryItem(a, c, args.jahr) for a, c in get_inventory(posts)]
         table = create_table(inventory, args.jahr)
         print(tabulate.tabulate(table, tablefmt='plain'))
     except ValueError as e:
