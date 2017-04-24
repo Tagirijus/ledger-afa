@@ -46,7 +46,7 @@ def get_inventory(posts):
     inventory = set()
     for post in posts:
         # other accounts from the parent transaction of this posting
-        inventory |= set((p.account, p.xact.code) for p in post.xact.posts()
+        inventory |= set((p.account, p.xact) for p in post.xact.posts()
                          if p.account.fullname() != post.account.fullname())
 
     return inventory
@@ -126,18 +126,20 @@ def create_table(items, year):
 
 
 class InventoryItem(object):
-    def __init__(self, account, code, year):
-        self.code = code
+    def __init__(self, account, xact, year):
+        self.code = xact.code
 
         self.item = account.name
         self.account = account.fullname()
         self.year = year
 
+        self.buy_date = min(p.date for p in account.posts()
+                            if p.xact.code == self.code)
+
         # get first_post to match code and lowest date
         first_post = [post for post in account.posts()
                       if post.xact.code == self.code and
-                      post.date == min(p.date for p in account.posts()
-                      if p.xact.code == self.code) and post.amount > 0]
+                      post.date == self.buy_date and post.amount > 0]
 
         # get the only entry in first_post
         try:
@@ -145,13 +147,17 @@ class InventoryItem(object):
         except ValueError as e:
             print(e.message)
 
-        self.buy_date = first_post.date
-
-        # instead of only taking initial value, accumulate all purchases
-        self.total_value = sum(p.amount for p in account.posts()
-                               if p.amount > 0 and p.date.year <= year
+        # for the total_value get account which paid the inventory item
+        #  -> its transaction has to be on buy_date
+        #  -> its code has to be self.code
+        #  -> its amount has to be < 0
+        #  -> its not the inventory account itself
+        self.total_value = sum(abs(pn.amount) for p in account.posts()
+                               for pn in p.xact.posts()
+                               if p.date == self.buy_date
                                and p.xact.code == self.code
-                               )
+                               and pn.amount < 0
+                               and p.id != pn.id)
 
         self.last_year_value = sum(p.amount for p in account.posts()
                                    if (p.date.year < year and
@@ -203,7 +209,7 @@ def main():
     try:
         journal = ledger.read_journal(args.file)
         posts = get_afa_posts(journal, args.konto, args.jahr)
-        inventory = [InventoryItem(a, c, args.jahr) for a, c in get_inventory(posts)]
+        inventory = [InventoryItem(a, x, args.jahr) for a, x in get_inventory(posts)]
         table = create_table(inventory, args.jahr)
         print(tabulate.tabulate(table, tablefmt='plain'))
     except ValueError as e:
