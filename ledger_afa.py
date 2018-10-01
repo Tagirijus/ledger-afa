@@ -152,7 +152,7 @@ class InventoryItem(object):
         #  -> its code has to be self.code
         #  -> its amount has to be < 0
         #  -> its not the inventory account itself
-        self.total_value = sum(abs(pn.amount) for p in account.posts()
+        self.total_value = sum(abs(p.amount) for p in account.posts()
                                for pn in p.xact.posts()
                                if p.date == self.buy_date
                                and p.xact.code == self.code
