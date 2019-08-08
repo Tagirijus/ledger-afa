@@ -3,3 +3,4 @@ colorama
 datetime
 tabulate
 termcolor
+ledger
