@@ -86,9 +86,9 @@ def create_table(items, year):
         'Beleg',
         'Gerät',
         'Kaufpreis',
-        'Buchwert {}'.format(year - 1),
+        'Buchwert Beginn {}'.format(year),
         'Abschreibung',
-        'Buchwert {}'.format(year),
+        'Buchwert Ende {}'.format(year),
     ]
 
     table = [map(color_header, header)]
