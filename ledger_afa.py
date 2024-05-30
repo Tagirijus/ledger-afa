@@ -1,7 +1,6 @@
 # coding=utf-8
 
 import argparse
-import colorama
 import ledger
 import tabulate
 
@@ -73,8 +72,6 @@ def table_entry(
 
 
 def create_table(items, year):
-    colorama.init()  # needed only for windows terminal color support
-
     def color_header(s):
         return colored(s, attrs=['bold'])
 
