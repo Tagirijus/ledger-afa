@@ -117,7 +117,7 @@ def create_table(items, year):
 
     table.append(map(color_footer, footer))
 
-    table = [map(lambda s: s.decode('utf-8'), row) for row in table]
+    table = [map(lambda s: s, row) for row in table]
 
     return table
 
