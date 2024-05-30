@@ -1,0 +1,61 @@
+CHANGES
+=======
+
+* Requirements fixed
+* total\_value of an inventory item now is just the post amount and not tha whole transaction amount
+* total\_value is calculated by < 0 amount on buy\_date
+* Fixed code according to comments from fricklerhandwerk
+* InventoryItem now considers code in calculations
+* get\_inventory() now returns tuple(account, transaction.code)
+* Corrected translation issue in README.md
+* New Version merged
+* OLD VERSION
+* Corrected some missed translation issues
+* handle invalid accounts by exception
+* add packaging info
+* set up basic tests
+* translate readme
+* use total value up to current year instead only initial value
+* consider additional purchases in current year
+* translate output strings
+* add \`\_\_eq\_\_\` to \`ledger.Account\` for correct set operations
+* add error handling in case of invalid account argument
+* handle case when report year equals year of acquisition
+* remove old classes
+* rename variables to be consistent
+* factor out new functions
+* clean up table formatting
+* use inventory accounts in a set
+* create InventoryItem
+* make signature less stateful and improve comments
+* get inventory accounts
+* get afa posts
+* use termcolor and colorama for colored output
+* use \`datetime.date.today\` and \`isoformat\`
+* Changed the exist variable in get\_afa\_accounts
+* - Deleted transaction.id from SingleAfaTRansaction(). It was redundant. - Fixed Amount(0) was not summerizable without the object automatic rounded the output. - gen\_id() function was gone. Now the query fixes this instead by also searchgin for the payee name to get the correct transactin only
+* use \`ledger.Amount\` for money amounts
+* fix english
+* remove \`ledgerparse\` dependency from \`AfaTransactions\`
+* remove \`ledgerparse\` dependency from \`SingleAfaTransaction\`
+* rename \`query\_to\_string\` to \`query\_total\`
+* use \`sum()\` instead of \`for\` loop
+* reduce \`get\_afa\_accounts\` by four indentations
+* rename different journal instances to \`journal\` and \`parser\`
+* rename and remove unused variables in \`calculate\_account\`
+* remove unused variable in \`calculate\_costs\`
+* don't use global ARGUMENTS variable
+* factor out main function
+* update readme string in module docstring
+* fix flake8 and some comments
+* add readme
+* Fixed line 222, which was too long
+* Renamed AND added the new script ... woops
+* Renamed the script
+* Improved overall script - looks way cleaner now!
+* Finalized programm with readable output
+* Started prototype of only-ledger-module version ... ledger module is documented like big SHIT ... does not work
+* First working version. Todo: use ledger module only instead of ledgerparse module
+* Still workign on it
+* Still workign on it
+* Init
