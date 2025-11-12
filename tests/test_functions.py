@@ -12,7 +12,6 @@ def test_get_sub_accounts(journal):
 def test_get_posts_invalid_account(journal):
     with pytest.raises(ValueError) as e:
         ledger_afa.get_afa_posts(journal, 'invalid', 2017)
-    print(dir(e.value))
     assert 'invalid' in str(e.value)
 
 
