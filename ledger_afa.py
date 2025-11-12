@@ -210,7 +210,7 @@ def main():
         table = create_table(inventory, args.jahr)
         print(tabulate.tabulate(table, tablefmt='plain'))
     except ValueError as e:
-        print(e.message)
+        print(e)
 
 if __name__ == '__main__':
     main()
